@@ -1,0 +1,37 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+<form id="form1" name="form1" method="post" action="/saf/viewbus/">
+{% csrf_token %}
+<table class="pull-right">
+  <tr>
+    <td>Name</td>
+    <td><input type="text" name="s" id="textfield" class="form-control" required/></td>
+    <td><input type="submit" name="button" id="button" value="Search" class="btn btn-dark"/></td>
+  </tr>
+</table>
+<br />
+  <table class="table table-bordered">
+    <tr>
+      <th width="50px">Sl.No</th>
+      <th>RegNo</th>
+      <th>Chasis Number</th>
+      <th>Rc Number</th>
+      <th>RcOwnerName</th>
+      <th>Seating</th>
+        <th colspan="2"></th>
+    </tr>
+      {% for re in data %}
+    <tr>
+      <td width="50px">{{ forloop.counter }}&nbsp;</td>
+      <td>{{ re.regno }}</td>
+      <td>{{ re.chasisnumber }}</td>
+      <td>{{ re.rcnumber }}</td>
+      <td>{{ re.rcownername }}&nbsp;</td>
+      <td>{{ re.totalseating }}</td>
+        <td><a href="/saf/editbus/{{ re.id }}" class="btn btn-info">Edit</a> </td>
+    <td><a href="/saf/deletebus/{{ re.id }}" class="btn btn-danger">Delete</a> </td>
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+{% endblock %}
