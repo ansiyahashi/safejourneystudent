@@ -1,0 +1,85 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+
+    {% load static %}
+<form id="form1" name="form1" method="post" action="/saf/viewbus/">
+{% csrf_token %}
+
+<table class="pull-right">
+  <tr>
+    <td>Route Name</td>
+    <td><select name="select" id="route" class="form-control">
+    <option>Select</option>
+        {% for i in data %}
+            <option value="{{ i.id }}">{{ i.route_name }} ( {{ i.starting_point }} - {{ i.end_point }})</option>
+        {% endfor %}
+    </select></td>
+  </tr>
+</table>
+<br /><br><br>
+  <table id="tbl" align="center" style="width: 800px;" class="table table-bordered">
+
+{#      {% for re in data %}#}
+{#    <tr>#}
+{#      <td width="50px">{{ forloop.counter }}&nbsp;</td>#}
+{#      <td>{{ re.regno }}</td>#}
+{#      <td>{{ re.chasisnumber }}</td>#}
+{#      <td>{{ re.rcnumber }}</td>#}
+{#      <td>{{ re.rcownername }}&nbsp;</td>#}
+{#      <td>{{ re.totalseating }}</td>#}
+{#        <td><a href="/saf/editbus/{{ re.id }}" class="btn btn-info">Edit</a> </td>#}
+{#    <td><a href="/saf/deletebus/{{ re.id }}" class="btn btn-danger">Delete</a> </td>#}
+{#    </tr>#}
+{#      {% endfor %}#}
+  </table>
+</form>
+
+<script src="{%static 'jquery.js' %}"></script>
+<script>
+var rid="";
+    $(document).ready(function(){
+         $("#route").change(function () {
+                rid = $(this).val();
+                if(rid=="Select"){
+                    alert('Choose Route');
+                } else{
+
+                  $.ajax({
+            url: "/saf/ajax_busstop/"+rid,
+            type: "get",
+            data: {
+
+            },
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function(dat) {
+                var data=dat["data"];
+                 var len =data.length;
+                 $("#tbl").empty();
+                 $("#tbl").append('<tr><td width="100px" align="center"><b>Sl.No</b></td><td align="center"><b>BusStop Number</b></td><td align="center"><b>BusStop Name</b></td><td colspan="2"></td></tr>')
+        for (var i = 0; i < len; i++) {
+             var cnt=i+1;
+
+            var name = data[i].stopname
+            var sno=data[i].stopno
+            var lati=data[i].latitude
+            var longi=data[i].longitude
+
+            var id = data[i].id
+
+            var dt='<tr style="height:50px;"><td width="100px" align="center">'+cnt+'</td><td align="center">'+sno+'</td><td align="center">'+name+'</td><td width="100px"><a class="btn btn-danger" href="/saf/del_busstop/'+id+'">Delete</a></td><td width="100px"><a target="_blank" class="btn btn-warning" href="http://maps.google.com/?q='+lati+','+longi+'">Locate</a></td></tr>'
+
+       $("#tbl").append(dt)
+
+        }
+            },
+            error: function(ts) {
+//{#                alert(ts);#}
+            }
+        });
+    }
+
+           });
+	});
+</script>
+{% endblock %}

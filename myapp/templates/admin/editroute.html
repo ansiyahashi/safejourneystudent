@@ -1,0 +1,37 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+
+<form enctype="multipart/form-data" method="post" action="/saf/updateroute/" style="background-color:#dff0d8">
+    <table class ="table table-bordered">
+         {% csrf_token %}
+
+    <tr>
+      <td width="250px">Route Name</td>
+      <td ><input type="text" name="routename"required class="form-control" value="{{ data.route_name }}"/></td>
+    </tr>
+
+        <tr>
+      <td>Starting Point</td>
+      <td><input type="text" name="spoint"required class="form-control" value="{{ data.starting_point }}"/></td>
+    </tr>
+    <tr>
+      <td>Ending Point</td>
+      <td><input type="text" name="epoint"required class="form-control" value="{{ data.end_point }}"/></td>
+    </tr>
+    <tr>
+      <td>Bus Name</td>
+      <td>
+          <select name="select">
+              {% for i in data1 %}
+                    <option value="{{ i.id }}" {% if i.id == data.BUS.id %} selected {% endif %}>{{ i.regno }}</option>
+              {% endfor %}
+          </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><input type="submit" name="button" id="button" value="Submit" class="btn btn-success"></td>
+    </tr>
+</table>
+</form>
+
+{% endblock %}
