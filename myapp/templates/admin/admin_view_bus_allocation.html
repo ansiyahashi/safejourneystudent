@@ -1,0 +1,29 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+<form id="form1" name="form1" method="post" action="">
+{% csrf_token %}
+  <table class="table table-bordered">
+    <tr>
+      <th width="50px">Sl.No</th>
+      <th>RegNo</th>
+      <th>Driver Name</th>
+      <th>Phone</th>
+        <th>Helper Name</th>
+      <th>Phone</th>
+      <th></th>
+    </tr>
+      {% for re in data %}
+    <tr>
+      <td width="50px">{{ forloop.counter }}&nbsp;</td>
+      <td>{{ re.BUS.regno }}</td>
+      <td align="center"><img src="{{ re.DRIVER.photo }}" height="100" width="100"/><br><b>{{ re.DRIVER.name }}</b></td>
+      <td>{{ re.DRIVER.phonenumber }}</td>
+              <td align="center"><img src="{{ re.HELPER.photo }}" height="100" width="100"/><br><b>{{ re.HELPER.name }}</b></td>
+      <td>{{ re.HELPER.phonenumber }}</td>
+
+    <td><a href="/saf/del_allocation/{{ re.id }}" class="btn btn-danger">Remove</a> </td>
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+{% endblock %}
