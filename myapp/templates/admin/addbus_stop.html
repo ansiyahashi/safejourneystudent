@@ -1,0 +1,51 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+
+    {% if messages %}
+    {% for message in messages %}
+   <div class="alert alert-success">
+  {{ message }}
+</div>
+    {% endfor %}
+
+{% endif %}
+<form enctype="multipart/form-data" method="post" action="/saf/addbus_stop/">
+    <table class ="table table-bordered">
+         {% csrf_token %}
+    <tr>
+      <td>Route Name</td>
+      <td>
+          <select name="select">
+              {% for i in data %}
+                    <option value="{{ i.id }}">{{ i.route_name }} ( {{ i.starting_point }} - {{ i.end_point }} )</option>
+              {% endfor %}
+          </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td width="250px">Stop Number</td>
+      <td ><input type="text" name="sno"required class="form-control"/></td>
+    </tr>
+
+        <tr>
+      <td>Stop Name</td>
+      <td><input type="text" name="sname"required class="form-control"/></td>
+    </tr>
+ <tr>
+      <td>Latitude</td>
+      <td><input type="text" name="lati"required class="form-control"/></td>
+    </tr>
+ <tr>
+      <td>Longitude</td>
+      <td><input type="text" name="longi"required class="form-control"/></td>
+    </tr>
+
+    <tr>
+      <td colspan="2" align="center"><input type="submit" name="button" id="button" value="Submit" class="btn btn-success"></td>
+    </tr>
+  </tbody>
+</table>
+</form>
+
+{% endblock %}
