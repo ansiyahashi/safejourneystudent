@@ -1,0 +1,41 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+<form id="form1" name="form1" method="post" action="/saf/viewhelper/">
+{% csrf_token %}
+<table class="pull-right">
+  <tr>
+    <td>Name</td>
+    <td><input type="text" name="s" id="textfield" class="form-control" /></td>
+    <td><input type="submit" name="button" id="button" value="Search" class="btn btn-dark"/></td>
+  </tr>
+</table>
+
+<br />
+  <table class="table table-bordered">
+    <tr>
+      <th width="50px">Sl.No</th>
+      <th colspan="2">Name</th>
+      <th>Gender</th>
+      <th>Dob</th>
+      <th>Address</th>
+      <th>Email</th>
+      <th>Phone</th>
+
+    </tr>
+      {% for re in data %}
+    <tr>
+      <td width="50px">{{ forloop.counter }}&nbsp;</td>
+      <td>{{ re.name }}</td>
+        <td><img src="{{ re.photo }}" width="100px" height="100px"/> </td>
+      <td>{{ re.gender }}</td>
+      <td>{{ re.dob }}</td>
+      <td>{{ re.place }} <br> {{ re.city }} <br> {{ re.state }} <br> {{ re.pincode }}&nbsp;</td>
+      <td>{{ re.email }}</td>
+      <td>{{ re.phonenumber }}</td>
+<td><a href="/saf/edithelper/{{ re.id }}" class="btn btn-info">Edit</a> </td>
+    <td><a href="/saf/deletehelper/{{ re.id }}" class="btn btn-danger">Delete</a> </td>
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+{% endblock %}
