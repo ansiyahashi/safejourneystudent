@@ -1,0 +1,38 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+<form id="form1" name="form1" method="post" action="/saf/viewroute/">
+{% csrf_token %}
+<table class="pull-right">
+  <tr>
+    <td>Route Name</td>
+    <td><input type="text" name="s" id="textfield" class="form-control" /></td>
+    <td><input type="submit" name="button" id="button" value="Search" class="btn btn-dark"/></td>
+  </tr>
+</table>
+
+<br />
+  <table class="table table-bordered">
+    <tr>
+      <th width="50px">Sl.No</th>
+      <th>RouteName</th>
+      <th>Starting Point</th>
+      <th>Ending Point</th>
+        <th>Bus</th>
+      <th colspan="2"></th>
+
+    </tr>
+      {% for re in data %}
+    <tr>
+      <td width="50px">{{ forloop.counter }}&nbsp;</td>
+      <td>{{ re.route_name }}</td>
+      <td>{{ re.starting_point }}</td>
+      <td>{{ re.end_point }}</td>
+      <td>{{ re.BUS.regno }}</td>
+    <td><a href="/saf/editroute/{{ re.id }}" class="btn btn-info">Edit</a> </td>
+    <td><a href="/saf/delroute/{{ re.id }}" class="btn btn-danger">Delete</a> </td>
+
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+{% endblock %}
