@@ -1,0 +1,77 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+<form enctype="multipart/form-data" method="post" action="/saf/updatedriver/">
+
+    <table class ="table table-bordered">
+         {% csrf_token %}
+
+    <tr>
+      <td width="150px">Driver Name</td>
+      <td ><input type="text" name="officername2"required class="form-control" value="{{ data.name }}"/></td>
+    </tr>
+    <tr>
+      <td>Gender</td>
+      <td><table>
+        <tbody>
+          <tr>
+            <td><input type="radio" name="radio" id="radio" value="Male" {% if data.gender == "Male" %} checked {% endif %}>
+              <label for="radio">Male </label></td>
+            <td><input type="radio" name="radio" id="radio2" value="Female" {% if data.gender == "Female" %} checked {% endif %}>
+              <label for="radio2">Female</label></td>
+            <td><input type="radio" name="radio" id="radio3" value="Others" {% if data.gender == "Others" %} checked {% endif %}>
+              <label for="radio3">Others</label></td>
+          </tr>
+        </tbody>
+      </table></td>
+    </tr>
+    <tr>
+      <td>Dob</td>
+      <td><input type="date" name="dob"required class="form-control" value="{{ data.dob }}"/></td>
+    </tr>
+    <tr>
+      <td>Place</td>
+      <td><input type="text" name="place"required class="form-control" value="{{ data.place }}"/></td>
+    </tr>
+    <tr>
+      <td>City</td>
+      <td><input type="text" name="city"required class="form-control" value="{{ data.city }}"/></td>
+    </tr>
+
+    <tr>
+      <td>State</td>
+      <td>
+        <input type="text" name="state" id="textfield"required class="form-control" value="{{ data.state }}"></td>
+    </tr>
+    <tr>
+      <td>Pincode</td>
+      <td>
+        <input type="text" name="pincode" id="textfield2"required class="form-control"  value="{{ data.pincode }}"></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td>
+        <input type="email" name="email" id="email"required class="form-control" value="{{ data.email }}" disabled></td>
+    </tr>
+    <tr>
+      <td>Phone No</td>
+      <td>
+        <input type="text" name="phone" id="textfield3"required class="form-control" value="{{ data.phonenumber }}"></td>
+    </tr>
+
+    <tr>
+      <td>Photo</td>
+      <td>
+      <input type="file" name="fileField" id="fileField"required class="form-control"> <img src="{{ data.photo }}" height="50px"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><input type="submit" name="button" id="button" value="UPDATE" class="btn btn-success"></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+</form>
+
+{% endblock %}
