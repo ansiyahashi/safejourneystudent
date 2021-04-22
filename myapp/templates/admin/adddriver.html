@@ -1,0 +1,151 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+<form enctype="multipart/form-data" method="post" action="/saf/adddriver/" onsubmit="return validate()">
+
+{% if messages %}
+    {% for message in messages %}
+   <div class="alert alert-success">
+  {{ message }}
+</div>
+    {% endfor %}
+{% endif %}
+    <table class ="table table-bordered">
+         {% csrf_token %}
+
+    <tr>
+      <td width="150px">Driver Name</td>
+      <td ><input type="text" name="officername2"required class="form-control" id="textname" /></td>
+    </tr>
+    <tr>
+      <td>Gender</td>
+      <td><table>
+        <tbody>
+          <tr>
+            <td><input type="radio" name="radio" id="radio" value="Male">
+              <label for="radio">Male </label></td>
+            <td><input type="radio" name="radio" id="radio2" value="Female" >
+              <label for="radio2">Female</label></td>
+            <td><input type="radio" name="radio" id="radio3" value="Others">
+              <label for="radio3">Others</label></td>
+          </tr>
+        </tbody>
+      </table></td>
+    </tr>
+    <tr>
+      <td>Dob</td>
+      <td><input type="date" name="dob"required class="form-control" id="txt_dob"/></td>
+    </tr>
+    <tr>
+      <td>Place</td>
+      <td><input type="text" name="place"required class="form-control" id="textplace" /></td>
+    </tr>
+    <tr>
+      <td>City</td>
+      <td><input type="text" name="city"required class="form-control"/></td>
+    </tr>
+
+    <tr>
+      <td>State</td>
+      <td>
+        <input type="text" name="state" id="textfield"required class="form-control"></td>
+    </tr>
+    <tr>
+      <td>Pincode</td>
+      <td>
+        <input type="text" name="pincode" id="textfield2"required class="form-control" id="textpin" ></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td>
+        <input type="email" name="email" id="email"required class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
+        /></td>
+    </tr>
+    <tr>
+      <td>Phone No</td>
+      <td>
+        <input type="text" name="phone" id="textfield3"required class="form-control" pattern="(0/91)?[7-9][0-9]{9}"></td>
+    </tr>
+
+    <tr>
+      <td>Photo</td>
+      <td>
+      <input type="file" name="fileField" id="fileField"required class="form-control"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" id="button" value="Submit" class="btn btn-success"></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+</form>
+
+
+
+     <script>
+    function validate(){
+        var letters = /^[A-Za-z ]+$/;
+        var cate=document.getElementById('textname');
+        if(!cate.value.match(letters))
+      {
+      alert(' name should be alphabet only');
+      return false;
+      }
+
+
+      var letters = /^[A-Za-z]+$/;
+        var catm=document.getElementById('textplace');
+        if(!catm.value.match(letters))
+      {
+      alert('place should be alphabet only');
+      return false;
+      }
+
+
+
+       var numbers = /^[0-9]+$/;
+        var cat=document.getElementById('textpin');
+        if(!cat.value.match(numbers))
+        {
+        alert('Pin should be numbers only');
+
+        return false;
+        }
+
+
+      var letters = /^[A-Za-z ]+$/;
+        var catv=document.getElementById('textfield6');
+        if(!catv.value.match(letters))
+      {
+      alert('Landmark should be alphabet only');
+      return false;
+      }
+
+      var letters = /^[A-Za-z]+$/;
+        var catp=document.getElementById('textfield4');
+        if(!catp.value.match(letters))
+      {
+      alert('Category should be alphabet only');
+      return false;
+      }
+
+
+
+
+
+
+
+        return true;
+        }
+
+    </script>
+
+
+
+
+
+
+{% endblock %}
