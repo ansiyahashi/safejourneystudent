@@ -1,0 +1,48 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+
+    {% if messages %}
+    {% for message in messages %}
+   <div class="alert alert-success">
+  {{ message }}
+</div>
+    {% endfor %}
+
+{% endif %}
+<form enctype="multipart/form-data" method="post" action="/saf/addroute/">
+    <table class ="table table-bordered">
+         {% csrf_token %}
+
+    <tr>
+      <td width="250px">Route Name</td>
+      <td ><input type="text" name="routename"required class="form-control"/></td>
+    </tr>
+
+        <tr>
+      <td>Starting Point</td>
+      <td><input type="text" name="spoint"required class="form-control"/></td>
+    </tr>
+    <tr>
+      <td>Ending Point</td>
+      <td><input type="text" name="epoint"required class="form-control"/></td>
+    </tr>
+    <tr>
+      <td>Bus Name</td>
+      <td>
+          <select name="select">
+              {% for i in data %}
+                    <option value="{{ i.id }}">{{ i.regno }}</option>
+              {% endfor %}
+          </select>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td colspan="2" align="center"><input type="submit" name="button" id="button" value="Submit" class="btn btn-success"></td>
+    </tr>
+  </tbody>
+</table>
+</form>
+
+{% endblock %}
