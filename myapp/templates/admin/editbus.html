@@ -1,0 +1,47 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+
+    {% if messages %}
+    {% for message in messages %}
+   <div class="alert alert-success">
+  {{ message }}
+</div>
+    {% endfor %}
+
+{% endif %}
+<form enctype="multipart/form-data" method="post" action="/saf/updatebus/" style="background-color:#dff0d8">
+    <table class ="table table-bordered">
+         {% csrf_token %}
+
+    <tr>
+      <td width="250px">Bus Registration Number</td>
+      <td ><input type="text" name="regno"required class="form-control" value="{{ data.regno }}"/></td>
+    </tr>
+
+        <tr>
+      <td>Rc Owner Name</td>
+      <td><input type="text" name="rcownername"required class="form-control" value="{{ data.rcownername }}"/></td>
+    </tr>
+    <tr>
+      <td>Rc Number</td>
+      <td><input type="text" name="rcnumber"required class="form-control" value="{{ data.rcnumber }}"/></td>
+    </tr>
+    <tr>
+      <td>Chasis Number</td>
+      <td><input type="text" name="chasisnumber" required class="form-control" value="{{ data.chasisnumber }}"/></td>
+    </tr>
+
+    <tr>
+      <td>Total Seating</td>
+      <td>
+        <input type="text" name="totalseating" id="textfield"required class="form-control" value="{{ data.totalseating }}"></td>
+    </tr>
+
+    <tr>
+      <td colspan="2" align="center"><input type="submit" name="button" id="button" value="UPDATE" class="btn btn-success"></td>
+    </tr>
+  </tbody>
+</table>
+</form>
+
+{% endblock %}
