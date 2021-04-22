@@ -1,0 +1,141 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+<form enctype="multipart/form-data" method="post" action="/saf/updatestudent/" style="background-color:#dff0d8">
+    <table class ="table table-bordered">
+         {% csrf_token %}
+
+    <tr>
+      <td width="150px">Student Name</td>
+      <td ><input type="text" name="name"required class="form-control" value="{{ data.name }}"/></td>
+    </tr>
+    <tr>
+      <td>Gender</td>
+      <td><table>
+        <tbody>
+          <tr>
+            <td><input type="radio" name="radio" id="radio" value="male" {% if data.gender == "male" %} checked {% endif %}>
+              <label for="radio">male </label></td>
+            <td><input type="radio" name="radio" id="radio2" value="female" {% if data.gender == "female" %} checked {% endif %}>
+              <label for="radio2">female</label></td>
+            <td><input type="radio" name="radio" id="radio3" value="others" {% if data.gender == "others" %} checked {% endif %}>
+              <label for="radio3">others</label></td>
+          </tr>
+        </tbody>
+      </table></td>
+    </tr>
+    <tr>
+      <td>Dob</td>
+      <td><input type="date" name="dob"required class="form-control" value="{{ data.dob }}"/></td>
+    </tr>
+
+        <tr>
+            <td>Class</td>
+            <td>
+
+            <select name="class" class="form-control">
+                <option>{{ data.clas }}</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+
+            </select>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td>Division</td>
+            <td>
+
+            <select name="division" class="form-control">
+                <option>{{ data.division }}</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+
+            </select>
+
+            </td>
+        </tr>
+
+
+    <tr>
+      <td>Place</td>
+      <td><input type="text" name="place"required class="form-control" value="{{ data.place }}"/></td>
+    </tr>
+    <tr>
+      <td>City</td>
+      <td><input type="text" name="city"required class="form-control" value="{{ data.city }}"/></td>
+    </tr>
+
+    <tr>
+      <td>State</td>
+      <td>
+        <input type="text" name="state" id="textfield"required class="form-control" value="{{ data.state }}"></td>
+    </tr>
+    <tr>
+      <td>Pincode</td>
+      <td>
+        <input type="text" name="pincode" id="textfield2"required class="form-control" value="{{ data.pincode }}"></td>
+    </tr>
+        <tr>
+      <td>Parent Name</td>
+      <td>
+        <input type="text" name="parentname" id="textfield2"required class="form-control" value="{{ data.parentname }}"></td>
+    </tr>
+
+
+        <tr>
+      <td>Relationship</td>
+      <td>
+
+      <select name="rel" class="form-control">
+          <option>{{ data.relationship }}</option>
+          <option value="Father">Father</option>
+          <option value="Mother">Mother</option>
+          <option value="Brother">Brother</option>
+          <option value="Sister">Sister</option>
+          <option value="Uncle">Uncle</option>
+
+      </select>
+
+
+      </td>
+    </tr>
+
+
+
+
+    <tr>
+      <td>Email</td>
+      <td>
+        <input type="email" name="email" id="email"required class="form-control" value="{{ data.email }}" disabled></td>
+    </tr>
+    <tr>
+      <td>Phone No</td>
+      <td>
+        <input type="text" name="phone" id="textfield3"required class="form-control" value="{{ data.phonenumber }}"></td>
+    </tr>
+
+    <tr>
+      <td>Photo</td>
+      <td>
+      <input type="file" name="fileField" id="fileField" class="form-control"><img src="{{ data.photo }}" height="50px"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><input type="submit" name="button" id="button" value="Submit" class="btn btn-success"></td>
+    </tr>
+  </tbody>
+</table>
+</form>
+
+{% endblock %}
