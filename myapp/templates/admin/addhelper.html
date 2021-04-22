@@ -1,0 +1,82 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+<form enctype="multipart/form-data" method="post" action="/saf/addhelper/">
+
+{% if messages %}
+    {% for message in messages %}
+   <div class="alert alert-success">
+  {{ message }}
+</div>
+    {% endfor %}
+{% endif %}
+    <table class ="table table-bordered">
+         {% csrf_token %}
+
+    <tr>
+      <td width="150px">Helper Name</td>
+      <td ><input type="text" name="officername2"required class="form-control"/></td>
+    </tr>
+    <tr>
+      <td>Gender</td>
+      <td><table>
+        <tbody>
+          <tr>
+            <td><input type="radio" name="radio" id="radio" value="Male">
+              <label for="radio">Male </label></td>
+            <td><input type="radio" name="radio" id="radio2" value="FeMale" >
+              <label for="radio2">Female</label></td>
+            <td><input type="radio" name="radio" id="radio3" value="Others">
+              <label for="radio3">Others</label></td>
+          </tr>
+        </tbody>
+      </table></td>
+    </tr>
+    <tr>
+      <td>Dob</td>
+      <td><input type="date" name="dob"required class="form-control"/></td>
+    </tr>
+    <tr>
+      <td>Place</td>
+      <td><input type="text" name="place"required class="form-control"/></td>
+    </tr>
+    <tr>
+      <td>City</td>
+      <td><input type="text" name="city"required class="form-control"/></td>
+    </tr>
+
+    <tr>
+      <td>State</td>
+      <td>
+        <input type="text" name="state" id="textfield"required class="form-control"></td>
+    </tr>
+    <tr>
+      <td>Pincode</td>
+      <td>
+        <input type="text" name="pincode" id="textfield2"required class="form-control"></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td>
+        <input type="email" name="email" id="email"required class="form-control"></td>
+    </tr>
+    <tr>
+      <td>Phone No</td>
+      <td>
+        <input type="text" name="phone" id="textfield3"required class="form-control"></td>
+    </tr>
+
+    <tr>
+      <td>Photo</td>
+      <td>
+      <input type="file" name="fileField" id="fileField"required class="form-control"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" id="button" value="Submit" class="btn btn-success"></td>
+    </tr>
+  </tbody>
+</table>
+
+</form>
+
+{% endblock %}
