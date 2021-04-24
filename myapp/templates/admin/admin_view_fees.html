@@ -1,0 +1,26 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+<form id="form1" name="form1" method="post" action="" style="background-color:#dff0d8">
+{% csrf_token %}
+  <table class="table table-bordered">
+    <tr>
+      <th width="50px">Sl.No</th>
+      <th>RegNo</th>
+      <th>Date</th>
+      <th>Fees</th>
+        <th colspan="2"></th>
+    </tr>
+      {% for re in data %}
+    <tr>
+      <td width="50px">{{ forloop.counter }}&nbsp;</td>
+      <td>{{ re.BUS.regno }}</td>
+      <td>{{ re.date }}</td>
+      <td>{{ re.fees }}</td>
+      <td><a href="/saf/edit_fees/{{ re.id }}" class="btn btn-primary">Edit</a> </td>
+      <td><a href="/saf/del_fees/{{ re.id }}" class="btn btn-danger">Delete</a> </td>
+
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+{% endblock %}

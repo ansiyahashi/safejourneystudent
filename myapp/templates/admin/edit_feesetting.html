@@ -1,0 +1,29 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+
+<form enctype="multipart/form-data" method="post" action="/saf/update_fees/" style="background-color:#dff0d8">
+    <table class ="table table-bordered">
+         {% csrf_token %}
+    <tr>
+      <td>Bus Name</td>
+      <td>
+          <select name="select">
+              {% for i in data1 %}
+                    <option value="{{ i.id }}" {% if i.id == data.BUS.id %} selected {% endif %}>{{ i.regno }}</option>
+              {% endfor %}
+          </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td width="250px">Fees</td>
+      <td ><input type="text" name="fees"required class="form-control" value="{{ data.fees }}"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><input type="submit" name="button" id="button" value="Update" class="btn btn-success"></td>
+    </tr>
+  </tbody>
+</table>
+</form>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+
+    {% if messages %}
+    {% for message in messages %}
+   <div class="alert alert-success">
+  {{ message }}
+</div>
+    {% endfor %}
+
+{% endif %}
+<form enctype="multipart/form-data" method="post" action="/saf/add_fee_setting/" style="background-color:#dff0d8">
+    <table class ="table table-bordered">
+         {% csrf_token %}
+    <tr>
+      <td>Bus Name</td>
+      <td>
+          <select name="select">
+              {% for i in data %}
+                    <option value="{{ i.id }}">{{ i.regno }}</option>
+              {% endfor %}
+          </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td width="250px">Fees</td>
+      <td ><input type="text" name="fees"required class="form-control"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><input type="submit" name="button" id="button" value="Submit" class="btn btn-success"></td>
+    </tr>
+  </tbody>
+</table>
+</form>
+
+{% endblock %}
