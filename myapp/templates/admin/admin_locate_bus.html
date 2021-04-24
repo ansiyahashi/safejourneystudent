@@ -1,0 +1,28 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+<form id="form1" name="form1" method="post" action="" style="background-color:#dff0d8">
+{% csrf_token %}
+
+  <table class="table table-bordered">
+    <tr>
+      <th width="50px">Sl.No</th>
+      <th>Date</th>
+      <th>RegNo</th>
+      <th>Rc Number</th>
+      <th>RcOwnerName</th>
+        <th></th>
+    </tr>
+      {% for re in data %}
+    <tr>
+      <td width="50px">{{ forloop.counter }}&nbsp;</td>
+      <td>{{ re.date }}</td>
+      <td>{{ re.BUS.regno }}</td>
+      <td>{{ re.BUS.rcnumber }}</td>
+      <td>{{ re.BUS.rcownername }}&nbsp;</td>
+    <td><a target="_blank" href="http://maps.google.com/?q={{ re.latitude }},{{ re.longitude }}" class="btn btn-warning">Locate</a> </td>
+
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+{% endblock %}
