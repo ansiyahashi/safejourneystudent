@@ -1,0 +1,33 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}<h2 style="background-color:#5fd7ba "> COMPLAINTS </h2>
+<form id="form1" name="form1" method="post" action="" style="background-color:#dff0d8">
+{% csrf_token %}
+
+<br />
+  <table class="table table-bordered">
+    <tr>
+      <th width="50px">Sl.No</th>
+      <th>Date</th>
+      <th>Parent Name</th>
+     <th>Message</th>
+      <th>Reply</th>
+    </tr>
+      {% for re in data %}
+    <tr>
+      <td width="50px">{{ forloop.counter }}&nbsp;</td>
+        <td>{{ re.date }}</td>
+        <td align="center"><img src="{{ re.PARENT.photo }}" height="100" width="100"/><br>
+            <b>{{ re.PARENT.name }}</b></td>
+      <td>{{ re.complaints }}</td>
+    <td>{% if re.reply == 'pending' %}
+            <a href="/saf/reply_to_prnt/{{ re.id }}" class="btn btn-danger">Reply</a>
+        {% else %}
+            {{ re.reply }}
+        {% endif %}
+    </td>
+
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+{% endblock %}
