@@ -1,0 +1,25 @@
+{% extends 'public/blank-page.html' %}
+{% block content %}
+        <h1>VIEW DRIVER MESSAGES</h1>
+<form id="form1" name="form1" method="post" action="" style="background-color:#dff0d8">
+{% csrf_token %}
+  <table class="table table-bordered">
+    <tr>
+      <th width="50px">Sl.No</th>
+      <th>Date</th>
+      <th>Driver Name</th>
+      <th>Phone</th>
+        <th>Message</th>
+    </tr>
+      {% for re in data %}
+    <tr>
+      <td width="50px">{{ forloop.counter }}&nbsp;</td>
+      <td>{{ re.date }}</td>
+      <td align="center"><img src="{{ re.DRIVER.photo }}" height="100" width="100"/><br><b>{{ re.DRIVER.name }}</b></td>
+      <td>{{ re.DRIVER.phonenumber }}</td>
+      <td>{{ re.message }}</td>
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+{% endblock %}
