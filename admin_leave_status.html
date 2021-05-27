@@ -1,0 +1,38 @@
+{% extends 'public/blank-page.html' %}
+{% block content %} <h2 style="background-color:#5fd7ba "> LEAVE STATUS </h2>
+<form id="form1" name="form1" method="post" action="/saf/adm_view_leave_req/" style="background-color:#dff0d8">
+{% csrf_token %}
+<table class="pull-right">
+  <tr>
+    <td>Staff Type</td>
+     <td> <select name="s" class="form-control" >
+         <option>Driver</option>
+         <option>Helper</option>
+      </select></td>
+    <td><input type="submit" name="button" id="button" value="Search" class="btn btn-dark"/></td>
+  </tr>
+</table>
+
+<br />
+  <table class="table table-bordered">
+    <tr>
+      <th width="50px">Sl.No</th>
+      <th>Date</th>
+      <th>Staff Name</th>
+      <th>Reason</th>
+      <th colspan="2"></th>
+    </tr>
+      {% for re in data %}
+   <tr>
+      <td width="50px">{{ forloop.counter }}&nbsp;</td>
+      <td>{{ re.date }}</td>
+      <td align="center"><img src="{{ re.image }}" height="100" width="100"/><br><b>{{ re.name }}</b></td>
+      <td>{{ re.reason }}</td>
+    <td><a href="/saf/adm_updt_status/{{ re.id }}/Approved" class="btn btn-info">Approve</a> </td>
+    <td><a href="/saf/adm_updt_status/{{ re.id }}/Rejected" class="btn btn-danger">Reject</a> </td>
+
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+{% endblock %}
